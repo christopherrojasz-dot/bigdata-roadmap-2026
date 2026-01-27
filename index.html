@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini sitio para probar GA4</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('js', new Date());
+
+    // Activa DebugView para tu navegador (solo para pruebas)
+    gtag('config', 'G-RF3VNBZEQT', { debug_mode: true });
+  </script>
+
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 40px; }
+    button { padding: 10px 14px; margin-right: 10px; margin-bottom: 10px; cursor: pointer; }
+    .box { padding: 14px; border: 1px solid #ddd; border-radius: 10px; max-width: 640px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Prueba rápida GA4</h1>
+    <p>Abre GA4 → <b>Tiempo real</b> y <b>DebugView</b> mientras haces clic.</p>
+
+    <button id="btn_lead">Enviar lead</button>
+    <button id="btn_quote">Solicitar cotización</button>
+    <button id="btn_buy">Simular compra</button>
+  </div>
+
+  <script>
+    document.getElementById('btn_lead').addEventListener('click', () => {
+      gtag('event', 'generate_lead', { method: 'form_demo' });
+      alert('Evento: generate_lead');
+    });
+
+    document.getElementById('btn_quote').addEventListener('click', () => {
+      gtag('event', 'request_quote', { source: 'demo_page' });
+      alert('Evento: request_quote');
+    });
+
+    document.getElementById('btn_buy').addEventListener('click', () => {
+      gtag('event', 'purchase', {
+        transaction_id: 'T' + Date.now(),
+        value: 49.90,
+        currency: 'PEN'
+      });
+      alert('Evento: purchase');
+    });
+  </script>
+</body>
+</html>
